@@ -15,7 +15,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:JetBrainsMono 12
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -38,8 +38,8 @@ bindsym $mod+d exec rofi -show drun
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-gaps inner 15
-gaps outer 25
+gaps inner 10
+gaps outer 15
 
 default_border pixel 0
 default_floating_border pixel 0 
@@ -72,8 +72,9 @@ bindsym $mod+Shift+Up move up
 # split in horizontal orientation
 bindsym $mod+semicolon split toggle
 
+bindsym $mod+p move workspace to output right
 # enter fullscreen mode for the focused container
-bindsym $mod+F11 fullscreen toggle
+bindsym $mod+F11 fullscreen toggle 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -174,18 +175,32 @@ client.background       $bg
 # Autoconfig
 exec_always --no-startup-id picom
 exec_always --no-startup-id wllpsetter
-exec_always --no-startup-id wal -R
+exec_always --no-startup-id wal -a 92 -R
 exec_always --no-startup-id /usr/libexec/gsd-xsettings 
 exec_always --no-startup-id xfce4-panel --disable-wm-check
 exec --no-startup-id nm-applet
 
 bindsym $mod+n exec --no-startup-id wllpsetter 
-bindsym $mod+c exec --no-startup-id chromium 
+bindsym $mod+b exec --no-startup-id firefox 
+bindsym $mod+t exec --no-startup-id thunar 
 bindsym $mod+m exec --no-startup-id spotify
 bindsym $mod+o exec --no-startup-id flatpak run md.obsidian.Obsidian
 bindsym $mod+Control+s exec --no-startup-id gnome-screenshot --interactive
 
+set $leave_menu Leave Menu: (1)Lock, (2)Logout, (3)Suspend, (4)Hibernate, (5)Reboot, (6)Shutdown
+mode "$leave_menu" {
+    bindsym 1 exec --no-startup-id $myscripts/lock-session.sh, mode "default"
+    bindsym 2 exec --no-startup-id i3-msg exit, mode "default"
+    bindsym 3 exec --no-startup-id systemctl suspend, mode "default"
+    bindsym 4 exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym 5 exec --no-startup-id systemctl reboot, mode "default"
+    bindsym 6 exec --no-startup-id systemctl poweroff, mode "default"
 
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$leave_menu"
 
 bar {
         status_command i3blocks

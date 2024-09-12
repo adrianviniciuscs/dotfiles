@@ -176,7 +176,6 @@ require('lazy').setup({
       },
     },
   },
-
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -214,7 +213,7 @@ require('lazy').setup({
       }, { mode = 'v' })
     end,
   },
-
+  { 'github/copilot.vim' },
   {
     {
       'jiaoshijie/undotree',
@@ -494,8 +493,11 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.offsetEncoding = { 'utf-16' }
+      require('lspconfig').clangd.setup { capabilities = capabilities }
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -591,7 +593,6 @@ require('lazy').setup({
       },
     },
   },
-
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
@@ -702,17 +703,40 @@ require('lazy').setup({
       }
     end,
   },
-
   {
-    'sainnhe/everforest',
+    'sainnhe/gruvbox-material',
     lazy = false,
-    priority = 1000,
+    priority = 10000,
     config = function()
       -- Optionally configure and load the colorscheme
       -- directly inside the plugin declaration.
-      vim.g.everforest_enable_italic = true
-      vim.g.everforest_transparent_background = 1
-      vim.cmd.colorscheme 'everforest'
+      vim.g.gruvbox_material_enable_italic = true
+      vim.g.gruvbox_material_transparent_background = 0
+      vim.g.gruvbox_material_foreground = 'original'
+      vim.cmd.colorscheme 'gruvbox-material'
+
+      -- Define a function to toggle transparency
+      function ToggleTransparency(enable)
+        if enable then
+          vim.g.gruvbox_material_transparent_background = 1
+        else
+          vim.g.gruvbox_material_transparent_background = 0
+        end
+        -- Re-apply the colorscheme to reflect changes
+        vim.cmd.colorscheme 'gruvbox-material'
+      end
+
+      -- Create commands to call the function
+      vim.api.nvim_create_user_command('TP', function(opts)
+        local arg = opts.args:lower()
+        if arg == 'true' then
+          ToggleTransparency(true)
+        elseif arg == 'false' then
+          ToggleTransparency(false)
+        else
+          print 'Usage: :TP(true) or :TP(false)'
+        end
+      end, { nargs = 1 })
     end,
   },
 

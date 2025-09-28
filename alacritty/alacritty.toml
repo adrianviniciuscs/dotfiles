@@ -1,0 +1,49 @@
+
+[window]
+# Preenchimento interno (padding)
+padding.x = 12
+padding.y = 12
+
+dimensions.columns = 130
+dimensions.lines = 30
+
+decorations = "none"
+# === NOVO: Título dinâmico ===
+# O título da janela muda conforme o comando em execução.
+# Muito útil agora que não temos mais a barra de título estática.
+dynamic_title = false
+
+[font]
+# Fonte principal com ícones
+normal.family = "JetBrains Mono"
+normal.style = "Regular"
+size = 14.0
+
+# === NOVO: Ajuste fino da posição da fonte ===
+# Pode corrigir pequenos desalinhamentos verticais em algumas fontes.
+# Ajuste 'y' conforme necessário.
+offset.y = 1
+
+[cursor]
+# === NOVO: Estilo do cursor ===
+# 'Block', 'Underline', ou 'Beam'
+style = "Block"
+unfocused_hollow = true
+
+[keyboard]
+# Seus atalhos personalizados (mantidos)
+bindings = [
+    { key = "F11", action = "ToggleFullscreen" },
+    { key = "Equals",   mods = "Alt", action = "IncreaseFontSize" },
+    { key = "Plus",     mods = "Alt", action = "IncreaseFontSize" },
+    { key = "Minus",    mods = "Alt", action = "DecreaseFontSize" },
+    { key = "Key0",     mods = "Control", action = "ResetFontSize" },
+    { key = "C",        mods = "Control|Shift", action = "Copy" },
+    { key = "V",        mods = "Control|Shift", action = "Paste" }
+]
+
+[general]
+# alacritty.toml
+# Versão Minimalista e Estilizada
+
+import = ["~/.config/alacritty/colors.toml"]

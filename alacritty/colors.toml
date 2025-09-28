@@ -1,0 +1,28 @@
+# wallust.toml needs to include this
+# alacritty = { template = 'alacritty.toml', target = '~/.config/alacritty/colors.toml' }
+
+# and alacritty.toml should import that file under [general]
+
+[colors.primary]
+background = "#1F1F22"
+foreground = "#E2F1F0"
+
+[colors.normal]
+black   = "#454548"
+red     = "#1C1D29"
+green   = "#424D60"
+yellow  = "#55596B"
+blue    = "#62768F"
+magenta = "#6D839F"
+cyan    = "#80A19F"
+white   = "#CDE2E1"
+
+[colors.bright]
+black   = "#8F9F9E"
+red     = "#252736"
+green   = "#576780"
+yellow  = "#71778F"
+blue    = "#839DBF"
+magenta = "#91AFD4"
+cyan    = "#ABD7D4"
+white   = "#CDE2E1"

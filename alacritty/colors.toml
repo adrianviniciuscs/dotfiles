@@ -4,25 +4,25 @@
 # and alacritty.toml should import that file under [general]
 
 [colors.primary]
-background = "#1F1F22"
-foreground = "#E2F1F0"
+background = "#191817"
+foreground = "#EFEEE9"
 
 [colors.normal]
-black   = "#454548"
-red     = "#1C1D29"
-green   = "#424D60"
-yellow  = "#55596B"
-blue    = "#62768F"
-magenta = "#6D839F"
-cyan    = "#80A19F"
-white   = "#CDE2E1"
+black   = "#403F3E"
+red     = "#1B1510"
+green   = "#4A3D27"
+yellow  = "#625033"
+blue    = "#8C7A40"
+magenta = "#6C8BAA"
+cyan    = "#9C9B90"
+white   = "#DFDED7"
 
 [colors.bright]
-black   = "#8F9F9E"
-red     = "#252736"
-green   = "#576780"
-yellow  = "#71778F"
-blue    = "#839DBF"
-magenta = "#91AFD4"
-cyan    = "#ABD7D4"
-white   = "#CDE2E1"
+black   = "#9C9B97"
+red     = "#231C15"
+green   = "#635134"
+yellow  = "#836B44"
+blue    = "#BBA355"
+magenta = "#90B9E3"
+cyan    = "#D0CEC0"
+white   = "#DFDED7"

@@ -1,4 +1,3 @@
-
 [window]
 # Preenchimento interno (padding)
 padding.x = 12
@@ -43,7 +42,4 @@ bindings = [
 ]
 
 [general]
-# alacritty.toml
-# Versão Minimalista e Estilizada
-
-import = ["~/.config/alacritty/colors.toml"]
+import = ["/home/adrian/.config/alacritty/themes/themes//everforest_dark.toml"]

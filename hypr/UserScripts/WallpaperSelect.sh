@@ -13,9 +13,9 @@ iDIR="$HOME/.config/swaync/images"
 iDIRi="$HOME/.config/swaync/icons"
 
 # swww transition config
-FPS=30
-TYPE="any"
-DURATION=1
+FPS=120
+TYPE="center"
+DURATION=5
 BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION --transition-bezier $BEZIER"
 
@@ -190,7 +190,7 @@ apply_video_wallpaper() {
   kill_wallpaper_for_video
 
   # Apply video wallpaper using mpvpaper
-  mpvpaper '*' -o "load-scripts=no no-audio --loop" "$video_path" &
+  mpvpaper '*' -o "load-scripts=no --loop" "$video_path" &
 }
 
 # Main function

@@ -1,53 +1,101 @@
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-
-/* My Mostly Used waybar config incase you wonder :) */
+[
+// =================================================================
+// BARRA 1: NOTEBOOK (eDP-1) - CONFIGURAÇÃO ORIGINAL COMPLETA
+// =================================================================
 {
-"include": [
-  "$HOME/.config/waybar/Modules",
-  "$HOME/.config/waybar/ModulesWorkspaces",
-  "$HOME/.config/waybar/ModulesCustom",
-  "$HOME/.config/waybar/ModulesGroups",
-  "$HOME/.config/waybar/UserModules",
-  ],
-"layer": "top",
-//"mode": "dock",
-"exclusive": true,
-"passthrough": false,
-"position": "top",
-"spacing": 3,
-"fixed-center": true,
-"ipc": true,
-"margin-top": 3,
-"margin-left": 8,
-"margin-right": 8,
+    "output": "eDP-1",
+    "include": [
+        "$HOME/.config/waybar/Modules",
+        "$HOME/.config/waybar/ModulesWorkspaces",
+        "$HOME/.config/waybar/ModulesCustom",
+        "$HOME/.config/waybar/ModulesGroups",
+        "$HOME/.config/waybar/UserModules"
+    ],
+    "layer": "top",
+    "exclusive": true,
+    "passthrough": false,
+    "position": "top",
+    "spacing": 3,
+    "fixed-center": true,
+    "ipc": true,
+    "margin-top": 3,
+    "margin-left": 8,
+    "margin-right": 8,
 
-"modules-left": [
-	"idle_inhibitor",
-	"custom/separator#blank",
-	"tray",
-	"custom/separator#blank",
-	"clock",
-	"custom/separator#blank_2",
-	"hyprland/window",
-	],
+    "modules-left": [
+        "idle_inhibitor",
+        "custom/separator#blank",
+        "tray",
+        "custom/separator#blank",
+        "clock",
+        "custom/separator#blank_2",
+        "hyprland/window"
+    ],
 
-"modules-center": [
-	"group/app_drawer",
-	"custom/separator#dot-line",
-	"hyprland/workspaces#rw",
-	"custom/separator#dot-line",
-	"group/notify",	
-	],
+    "modules-center": [
+        "group/app_drawer",
+        "custom/separator#dot-line",
+        "hyprland/workspaces#rw",
+        "custom/separator#dot-line",
+        "group/notify"
+    ],
 
-"modules-right": [
-	"group/laptop",
-	"custom/separator#blank",
-	"group/mobo_drawer",
-	"custom/separator#line",  
-	"group/audio",
-	"custom/separator#dot-line",
-	"mpris",
-	"custom/separator#blank", 
-	"group/status",
-	],
+    "modules-right": [
+        "group/laptop",
+        "custom/separator#blank",
+        "group/mobo_drawer",
+        "custom/separator#line",  
+        "group/audio",
+        "custom/separator#dot-line",
+        "mpris",
+        "custom/separator#blank", 
+        "group/status",
+	"custom/hyprshift"
+    ],
+
+    // Garante que aqui só mostre workspaces 1-5
+    "hyprland/workspaces#rw": {
+        "all-outputs": false
+    }
+},
+
+// =================================================================
+// BARRA 2: HDMI (HDMI-A-2) - SOMENTE WORKSPACES
+// =================================================================
+{
+    "output": "HDMI-A-2",
+    "include": [
+        "$HOME/.config/waybar/Modules",
+        "$HOME/.config/waybar/ModulesWorkspaces", // Mantém estilo dos workspaces
+        "$HOME/.config/waybar/ModulesCustom",
+        "$HOME/.config/waybar/ModulesGroups",
+        "$HOME/.config/waybar/UserModules"
+    ],
+    "layer": "top",
+    "exclusive": true,
+    "passthrough": false,
+    "position": "top",
+    "spacing": 3,
+    "fixed-center": true,
+    "ipc": true,
+    "margin-top": 3,
+    "margin-left": 8,
+    "margin-right": 8,
+
+    // Esquerda Vazia
+    "modules-left": ["clock"],
+
+    // Centro: Apenas Workspaces (removi app_drawer e notify)
+    "modules-center": [
+        "hyprland/workspaces#rw"
+    ],
+
+    // Direita Vazia
+    "modules-right": [],
+
+    // Garante que aqui só mostre workspaces 6-10
+    "hyprland/workspaces#rw": {
+        "all-outputs": false
+    }
 }
+]

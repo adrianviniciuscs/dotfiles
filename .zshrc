@@ -77,9 +77,13 @@ alias checksize="df -h .; du -sh -- * | sort -hr"
 alias protontricks='flatpak run com.github.Matoking.protontricks'
 alias protontricks-launch='flatpak run --command=protontricks-launch com.github.Matoking.protontricks'
 alias wezconfig='nvim ~/.config/wezterm/'
+export PATH="/usr/.local/bin:$PATH"
+
 
 
 # Environment Variables
+export STRAVA_CID=115065
+export STRAVA_SKEY=d4dc9510f9c7a1cb47c50ddf89e9a3dbf1caf2e2
 export QSYS_ROOTDIR="/home/adrian/intelFPGA_lite/23.1std/quartus/sopc_builder/bin"
 export ANDROID_SDK_ROOT="$HOME/.android_sdk"
 
@@ -95,4 +99,28 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 # Custom keybindings
 bindkey -e
 bindkey -s ^f "tmux-sessionizer\n"
-eval "$(gh copilot alias -- zsh)"
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
+export PATH="/home/adrian/.local/bin:$PATH"
+
+
+# Alias para Watermark-CLI
+# Uso: wm arquivo.jpg
+wm() {
+    if [ -z "$1" ]; then
+        echo "Uso: wm <arquivo_imagem>"
+        return 1
+    fi
+    
+    # Configurações fixas
+    TEXTO="u/FAVCS • PREVIEW"
+    COR="255, 255, 255, 90" # Branco suave
+    SCALE="0.07"
+    
+    # Executa a ferramenta
+    watermark-cli "$1" "$TEXTO" --color "$COR" --text-scale "$SCALE" --orientation -45
+    
+    echo "✅ Marca d'água aplicada em $1"
+}
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+alias claude-pick="/home/adrian/projetos/free-claude-code/claude-pick"

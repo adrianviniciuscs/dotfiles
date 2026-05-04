@@ -1,7 +1,7 @@
 [window]
 # Preenchimento interno (padding)
-padding.x = 8
-padding.y = 15
+padding.x = 12
+padding.y = 12
 
 dimensions.columns = 130
 dimensions.lines = 30
@@ -30,6 +30,7 @@ style = "Block"
 unfocused_hollow = true
 
 [keyboard]
+# Seus atalhos personalizados (mantidos)
 bindings = [
     { key = "F11", action = "ToggleFullscreen" },
     { key = "Equals",   mods = "Alt", action = "IncreaseFontSize" },
@@ -37,8 +38,7 @@ bindings = [
     { key = "Minus",    mods = "Alt", action = "DecreaseFontSize" },
     { key = "Key0",     mods = "Control", action = "ResetFontSize" },
     { key = "C",        mods = "Control|Shift", action = "Copy" },
-    { key = "V",        mods = "Control|Shift", action = "Paste" },
-    { key = "Return",   mods = "Shift", chars = "\u001B\r" }
+    { key = "V",        mods = "Control|Shift", action = "Paste" }
 ]
 
 [general]

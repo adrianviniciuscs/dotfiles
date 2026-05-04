@@ -146,7 +146,13 @@
     "tooltip": true,
 	"tooltip-format": "Left Click: Reboot",
 },
-    
+"custom/hyprshift": {
+    "format": "{}",
+    "exec": "hyprshift status | grep 'Current' | awk '{print $3}'",
+    "interval": 60,
+    "tooltip": true,
+    "tooltip-format": "{}"
+},
 "custom/quit": {
     "format": "󰗼",
     "on-click": "hyprctl dispatch exit",

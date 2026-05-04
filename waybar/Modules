@@ -55,22 +55,24 @@
   "format-icons": ["", ""]
 },
 
+
 "battery": {
-	//"interval": 5,
+	"interval": 10,
 	"align": 0,
 	"rotate": 0,
-	//"bat": "BAT1",
-	//"adapter": "ACAD",
 	"full-at": 100,
 	"design-capacity": false,
-	"states": {
-		"good": 95,
-		"warning": 30,
-		"critical": 15
-	},
-	"format": "{icon} {capacity}%",
+	
+	// REMOVIDO O BLOCO "STATES" PARA NÃO FICAR VERMELHO/CRÍTICO
+	// "states": { "good": 95, "warning": 30, "critical": 15 },
+
+	// MODO ZEN: Quando está parado no 0%, mostra só que está na tomada
+	"format": "  AC",
+	"format-plugged": "  AC",
+
+	// ALERTA DE RESSURREIÇÃO: Se começar a carregar, aí sim mostra a %
 	"format-charging": " {capacity}%",
-	"format-plugged": "󱘖 {capacity}%",
+	
 	"format-alt-click": "click",
 	"format-full": "{icon} Full",
 	"format-alt": "{icon} {time}",
@@ -79,10 +81,12 @@
 	],
 	"format-time": "{H}h {M}min",
 	"tooltip": true,
-	"tooltip-format": "{timeTo} {power}w",
+	// O Tooltip ainda te diz a verdade se você passar o mouse
+	"tooltip-format": "Status: {capacity}%\nConsumo: {power}W",
 	"on-click-middle": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
 	"on-click-right": "$HOME/.config/hypr/scripts/Wlogout.sh",
 },
+
 
 "bluetooth": {
 	"format": " ",

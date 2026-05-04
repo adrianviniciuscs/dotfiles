@@ -1,6 +1,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -16,6 +17,9 @@ vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
+
+-- Enable autoread files
+vim.o.autoread = true
 
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
@@ -95,6 +99,7 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -291,6 +296,13 @@ require('lazy').setup({
         { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
       },
     },
+  },
+
+  {
+    "lervag/vimtex",
+    init = function()
+      vim.g.vimtex_view_method = "zathura"
+    end
   },
   {
     'neovim/nvim-lspconfig',
@@ -560,6 +572,10 @@ require('lazy').setup({
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
 
+        ['<Tab>'] = {},
+        -- Disable tab to accept to avoid conflicts with other plugins
+        ['<S-Tab>'] = {},
+
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
@@ -602,11 +618,22 @@ require('lazy').setup({
   { 'rebelot/kanagawa.nvim',            priority = 1000 },
   { 'EdenEast/nightfox.nvim',           priority = 1000 },
   { 'rose-pine/neovim',                 name = 'rose-pine',  priority = 1000 },
+  { 'jwbaldwin/oscura.nvim',            priority = 1000 },
   { 'sainnhe/everforest',               priority = 1000 },
   { 'Mofiqul/dracula.nvim',             priority = 1000 },
   { 'nyoom-engineering/oxocarbon.nvim', priority = 1000 },
+  { 'shaunsingh/nord.nvim',             priority = 1000 },                                            -- Classic Arctic Blue
+  { 'loctvl842/monokai-pro.nvim',       priority = 1000 },                                            -- Vibrant & Sharp
+  { 'craftzdog/solarized-osaka.nvim',   priority = 1000 },                                            -- Modern Solarized
+  { 'scottmckendry/cyberdream.nvim',    priority = 1000 },                                            -- High Contrast "Hacker"
+  { 'olivercederborg/poimandres.nvim',  priority = 1000 },                                            -- Dark Sci-Fi
+  { 'maxmx03/solarized.nvim',           priority = 1000 },                                            -- Pure, faithful Solarized
+  { 'projekt0n/github-nvim-theme',      priority = 1000 },                                            -- Github (Light/Dark/Dimmed)
+  { 'marko-cerovac/material.nvim',      priority = 1000 },                                            -- Material Design (Deep Ocean/Palenight)
+  { 'mcchrish/zenbones.nvim',           priority = 1000,     dependencies = { 'rktjmp/lush.nvim' } }, -- High-contrast Monochrome/Zen
+  { 'diegoulloao/neofusion.nvim',       priority = 1000 },                                            -- Modern VS Code-like dark theme
 
-  { -- You can easily change to a different colorscheme.
+  {                                                                                                   -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
     --
@@ -621,10 +648,12 @@ require('lazy').setup({
         },
       }
 
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      local ok, saved = pcall(require, 'user.theme_choice')
+      if ok and saved and saved.theme then
+        vim.cmd.colorscheme(saved.theme)
+      else
+        vim.cmd.colorscheme 'tokyonight'
+      end
     end,
   },
 
@@ -665,7 +694,7 @@ require('lazy').setup({
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {

@@ -1,1 +1,1 @@
-return { theme = "catppuccin-macchiato" }
+return { theme = "gruvbox" }
